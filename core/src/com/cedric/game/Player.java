@@ -74,7 +74,6 @@ public class Player{
         {
             y -= velocity;
             velocity += force;
-            System.out.println(y);
         }
     }
 

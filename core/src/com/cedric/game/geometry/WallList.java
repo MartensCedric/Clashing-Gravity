@@ -60,7 +60,7 @@ public class WallList extends ArrayList<Wall> {
 
             if(wall.getX() + wall.getWidth() < 0)
             {
-                this.add(new Wall(getTextureFromColor(spawningColor), this.get(size() - 1).getX() + wallWidth, wall.getY(), game));
+                this.add(new Wall(getTextureFromColor(spawningColor), wall.getX() + wallCountNeeded * 16, wall.getY(), game));
                 this.remove(i);
             }
         }

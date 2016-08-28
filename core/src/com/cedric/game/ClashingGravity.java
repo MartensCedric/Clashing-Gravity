@@ -2,6 +2,8 @@ package com.cedric.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,13 +13,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.geometry.Wall;
 import com.cedric.game.geometry.WallList;
 
-import java.util.HashMap;
-import java.util.Map;
 
 //TODO ADD FLOOR AND CEILING
 //TODO ADD SIDESCROLLING EFFECT
 
-public class ClashingGravity extends ApplicationAdapter {
+public class ClashingGravity extends ApplicationAdapter{
 
 	private SpriteBatch batch;
 	private BitmapFont font;
@@ -55,6 +55,15 @@ public class ClashingGravity extends ApplicationAdapter {
 
 		player = null;
 
+		Gdx.input.setInputProcessor(new InputAdapter() {
+			@Override
+			public boolean touchDown (int x, int y, int pointer, int button) {
+				if(player != null)
+					player.gravitySwitch();
+
+				return true;
+			}
+		});
 	}
 
 	@Override
