@@ -18,9 +18,7 @@ public class Player{
     private ClashingGravity game;
     private Texture texture;
     private String textureName;
-    private Sprite playerSprite;
 
-    private boolean gravityDown;
     private double force;
 
     private double velocity;
@@ -42,7 +40,6 @@ public class Player{
 
         this.texture = game.getSprite(textureName);
 
-        this.gravityDown = true;
 
         this.force = 0.15;
 

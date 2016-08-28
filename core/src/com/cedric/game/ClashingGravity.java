@@ -14,9 +14,6 @@ import com.cedric.game.geometry.Wall;
 import com.cedric.game.geometry.WallList;
 
 
-//TODO ADD FLOOR AND CEILING
-//TODO ADD SIDESCROLLING EFFECT
-
 public class ClashingGravity extends ApplicationAdapter{
 
 	private SpriteBatch batch;
@@ -67,7 +64,7 @@ public class ClashingGravity extends ApplicationAdapter{
 	}
 
 	@Override
-	public void render () {
+	public void render (){
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -104,6 +101,11 @@ public class ClashingGravity extends ApplicationAdapter{
 		assetManager.dispose();
 	}
 
+	private void restart()
+	{
+
+	}
+
 	public void update()
 	{
 		player.update();
@@ -114,6 +116,8 @@ public class ClashingGravity extends ApplicationAdapter{
 	{
 		assetManager.load("data/Sprites/sqr_blue.png", Texture.class);
 		assetManager.load("data/Sprites/sqr_wall_red.png", Texture.class);
+
+		assetManager.load("data/Sprites/obs_spike.png", Texture.class);
 	}
 
 	public Texture getSprite(String textureName)
