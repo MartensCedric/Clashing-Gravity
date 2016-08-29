@@ -13,8 +13,8 @@ public class Wall {
     private int width;
     private int height;
 
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
     private Texture texture;
 
@@ -56,7 +56,7 @@ public class Wall {
     }
 
     public int getX() {
-        return x;
+        return (int)x;
     }
 
     public void setX(int x) {
@@ -64,10 +64,18 @@ public class Wall {
     }
 
     public int getY() {
-        return y;
+        return (int)y;
     }
 
     public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
         this.y = y;
     }
 }

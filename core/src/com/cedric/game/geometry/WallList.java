@@ -1,10 +1,10 @@
 package com.cedric.game.geometry;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.cedric.game.ClashingGravity;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,9 +35,9 @@ public class WallList extends ArrayList<Wall> {
         this.wallCountNeeded = appWidth/wallWidth + 1;
 
         this.colors = new HashMap<Color, String>();
-        this.spawningColor = Color.red;
+        this.spawningColor = Color.RED;
 
-        colors.put(Color.red, "sqr_wall_red");
+        colors.put(Color.RED, "sqr_wall_red");
 
         //FLOOR
         for(int i = 0; i < wallCountNeeded; i++)

@@ -3,7 +3,6 @@ package com.cedric.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.geometry.Wall;
 import com.cedric.game.geometry.WallList;
+import com.cedric.game.obstacles.ObstacleManager;
+import com.cedric.game.obstacles.Spike;
 
 
 public class ClashingGravity extends ApplicationAdapter{
@@ -30,6 +31,7 @@ public class ClashingGravity extends ApplicationAdapter{
 	private boolean loaded = false;
 
 	private double playerSpeed;
+	private ObstacleManager obstacleManager;
 
 	@Override
 	public void create () {
@@ -53,6 +55,7 @@ public class ClashingGravity extends ApplicationAdapter{
 		player = null;
 
 		Gdx.input.setInputProcessor(new InputAdapter() {
+
 			@Override
 			public boolean touchDown (int x, int y, int pointer, int button) {
 				if(player != null)
@@ -78,6 +81,7 @@ public class ClashingGravity extends ApplicationAdapter{
 			{
 				player = new Player(this);
 				walls = new WallList(this);
+				obstacleManager =  new ObstacleManager(this);
 			}
 
 
@@ -85,6 +89,9 @@ public class ClashingGravity extends ApplicationAdapter{
 
 			for(Wall wall:walls)
 				batch.draw(wall.getTexture(), wall.getX(), wall.getY());
+
+			for(Spike spike: this.obstacleManager.getSpikes())
+				batch.draw(spike.getTexture(), spike.getX(), spike.getY());
 
 		}
 		batch.end();
@@ -110,6 +117,9 @@ public class ClashingGravity extends ApplicationAdapter{
 	{
 		player.update();
 		walls.update();
+		obstacleManager.update();
+
+		playerSpeed += 0.003;
 	}
 
 	private void loadAssets()
