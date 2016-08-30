@@ -4,11 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.cedric.game.geometry.BoxCoords;
+import com.cedric.game.interfaces.Renderable;
 
 /**
  * Created by Cedric Martens on 2016-08-26.
  */
-public class Player{
+public class Player implements Renderable{
 
     private final double MIN_VELOCITY = 2.0;
     private final double MAX_VELOCITY = 3.0;
@@ -122,6 +123,11 @@ public class Player{
 
     public void setX(double x) {
         this.x = x;
+    }
+
+    @Override
+    public void render() {
+        game.getBatch().draw(texture, (int)this.x, (int)this.y);
     }
 }
 

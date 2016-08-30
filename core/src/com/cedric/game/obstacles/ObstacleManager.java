@@ -59,12 +59,12 @@ public class ObstacleManager implements Renderable{
 
         Random randomizer = new Random();
 
-        if(randomizer.nextInt(1000) < game.getPlayerSpeed())
+        if(randomizer.nextInt(200) < game.getPlayerSpeed())
         {
             createSpikedFloor((int)game.getPlayerSpeed()*2);
         }
 
-        if(randomizer.nextInt(1000) < game.getPlayerSpeed())
+        if(randomizer.nextInt(200) < game.getPlayerSpeed())
         {
             createSpikedCeiling((int)game.getPlayerSpeed()*2);
         }

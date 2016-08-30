@@ -86,12 +86,11 @@ public class ClashingGravity extends ApplicationAdapter{
             batch.begin();
 
             walls.render();
-			batch.draw(player.getTexture(),(float)player.getX(), (float)player.getY());
+			player.render();
 			obstacleManager.render();
 
             batch.end();
 		}
-
 
 
 		if(loaded)
@@ -105,9 +104,12 @@ public class ClashingGravity extends ApplicationAdapter{
 		assetManager.dispose();
 	}
 
-	private void restart()
+	public void restart()
 	{
-
+		playerSpeed = 2.0;
+		player = new Player(this);
+		walls = new WallManager(this);
+		obstacleManager = new ObstacleManager(this);
 	}
 
 	public void update()
