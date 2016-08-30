@@ -32,7 +32,7 @@ public class ObstacleManager{
             Spike spike = spikes.get(i);
             spike.move();
 
-            System.out.println("Number of Spikes : " + spikes.size());
+            //TODO Align spikes with walls, no spikes must overlap.
 
             if(spike.getX() + spike.getWidth() <= 0)
             {

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.geometry.Wall;
-import com.cedric.game.geometry.WallList;
+import com.cedric.game.geometry.WallManager;
 import com.cedric.game.obstacles.ObstacleManager;
 import com.cedric.game.obstacles.Spike;
 
@@ -26,7 +26,7 @@ public class ClashingGravity extends ApplicationAdapter{
 
 	private AssetManager assetManager;
 	private String playerTextureName;
-	private WallList walls;
+	private WallManager walls;
 
 	private boolean loaded = false;
 
@@ -74,27 +74,27 @@ public class ClashingGravity extends ApplicationAdapter{
 		if(assetManager.update())
 			loaded = true;
 
-		batch.begin();
+
 		if(loaded)
 		{
 			if(player == null && walls == null)
 			{
 				player = new Player(this);
-				walls = new WallList(this);
+				walls = new WallManager(this);
 				obstacleManager =  new ObstacleManager(this);
 			}
-
-
+            batch.begin();
+            walls.render();
 			batch.draw(player.getTexture(),(float)player.getX(), (float)player.getY());
 
-			for(Wall wall:walls)
-				batch.draw(wall.getTexture(), wall.getX(), wall.getY());
+
 
 			for(Spike spike: this.obstacleManager.getSpikes())
 				batch.draw(spike.getTexture(), spike.getX(), spike.getY());
 
+            batch.end();
 		}
-		batch.end();
+
 
 
 		if(loaded)
@@ -119,7 +119,7 @@ public class ClashingGravity extends ApplicationAdapter{
 		walls.update();
 		obstacleManager.update();
 
-		playerSpeed += 0.003;
+		playerSpeed += 0.0003;
 	}
 
 	private void loadAssets()
@@ -156,11 +156,15 @@ public class ClashingGravity extends ApplicationAdapter{
 		this.playerSpeed = playerSpeed;
 	}
 
-	public WallList getWalls() {
+	public WallManager getWalls() {
 		return walls;
 	}
 
-	public void setWalls(WallList walls) {
+	public void setWalls(WallManager walls) {
 		this.walls = walls;
 	}
+
+    public SpriteBatch getBatch() {
+        return batch;
+    }
 }

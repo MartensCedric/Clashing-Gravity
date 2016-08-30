@@ -24,6 +24,7 @@ public class Spike implements Movable{
 
         this.x = x;
         this.y = y;
+
         this.width = 16;
         this.height = 16;
     }

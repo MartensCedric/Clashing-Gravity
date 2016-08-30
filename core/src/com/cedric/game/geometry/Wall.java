@@ -13,12 +13,12 @@ public class Wall {
     private int width;
     private int height;
 
-    private double x;
-    private double y;
+    private float x;
+    private float y;
 
     private Texture texture;
 
-    public Wall(Texture texture, int x, int y, ClashingGravity game)
+    public Wall(Texture texture, float x, float y, ClashingGravity game)
     {
         width = 16;
         height = 16;
@@ -59,10 +59,6 @@ public class Wall {
         return (int)x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return (int)y;
     }
@@ -71,11 +67,8 @@ public class Wall {
         this.y = y;
     }
 
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public void setY(double y) {
-        this.y = y;
-    }
 }
