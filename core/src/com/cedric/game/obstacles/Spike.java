@@ -2,11 +2,12 @@ package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.cedric.game.ClashingGravity;
+import com.cedric.game.interfaces.Movable;
 
 /**
  * Created by Cedric on 2016-08-27.
  */
-public class Spike implements Movable{
+public class Spike implements Movable {
 
     private Texture texture;
     private ClashingGravity game;

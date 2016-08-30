@@ -1,12 +1,13 @@
-package com.cedric.game.geometry;
+package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.cedric.game.ClashingGravity;
+import com.cedric.game.interfaces.Renderable;
 
 /**
  * Created by Cedric on 2016-08-27.
  */
-public class Wall {
+public class Wall implements Renderable{
 
     private ClashingGravity game;
 
@@ -71,4 +72,8 @@ public class Wall {
         this.x = x;
     }
 
+    @Override
+    public void render() {
+        game.getBatch().draw(texture, this.x, this.y);
+    }
 }

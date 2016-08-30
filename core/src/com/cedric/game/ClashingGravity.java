@@ -9,8 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.cedric.game.geometry.Wall;
-import com.cedric.game.geometry.WallManager;
+import com.cedric.game.obstacles.WallManager;
 import com.cedric.game.obstacles.ObstacleManager;
 import com.cedric.game.obstacles.Spike;
 

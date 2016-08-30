@@ -1,13 +1,10 @@
-package com.cedric.game.geometry;
+package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.ClashingGravity;
-import com.cedric.game.obstacles.Renderable;
+import com.cedric.game.interfaces.Renderable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,13 +107,12 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
 
     @Override
     public void render() {
-        SpriteBatch batch = game.getBatch();
 
         for(Wall wall : floorWalls)
-            batch.draw(wall.getTexture(), wall.getX(), wall.getY());
+            wall.render();
 
         for(Wall wall : ceilingWalls)
-            batch.draw(wall.getTexture(), wall.getX(), wall.getY());
+            wall.render();
 
     }
 }

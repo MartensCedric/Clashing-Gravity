@@ -1,4 +1,4 @@
-package com.cedric.game.obstacles;
+package com.cedric.game.interfaces;
 
 /**
  * Created by Cedric Martens on 2016-08-29.
