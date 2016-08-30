@@ -23,6 +23,9 @@ public class Spike implements Movable {
         this.texture = game.getSprite("obs_spike");
         this.game = game;
 
+        this.width = 16;
+        this.height = 16;
+
         this.x = x;
         this.y = y;
 
@@ -33,7 +36,6 @@ public class Spike implements Movable {
     @Override
     public void move() {
         x -= game.getPlayerSpeed();
-        System.out.println(x + "\t" + y);
     }
 
     @Override
@@ -58,12 +60,12 @@ public class Spike implements Movable {
 
     @Override
     public int getWidth() {
-        return 0;
+        return width;
     }
 
     @Override
     public int getHeight() {
-        return 0;
+        return height;
     }
 
     public Texture getTexture() {

@@ -47,6 +47,8 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
         this.spawningColor = Color.RED;
 
         colors.put(Color.RED, "sqr_wall_red");
+        colors.put(Color.GREEN, "sqr_wall_green");
+        colors.put(Color.YELLOW, "sqr_wall_yellow");
 
         //FLOOR
         for(int i = 0; i < wallCountNeeded; i++)
@@ -78,7 +80,6 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             if(lastFloor.getX() < appWidth)
             {
                 floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), game));
-                System.out.println(lastFloor.getX() + "   " + (int)(lastFloor.getX() + wallWidth));
             }
         }
 
@@ -98,6 +99,11 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             if(lastCeiling.getX() < appWidth)
                 ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), game));
         }
+
+        if(game.getPlayerSpeed() >= 3 && game.getPlayerSpeed() < 4)
+            spawningColor = Color.GREEN;
+        else if(game.getPlayerSpeed() >= 4)
+            spawningColor = Color.YELLOW;
     }
 
     private Texture getTextureFromColor(Color color)

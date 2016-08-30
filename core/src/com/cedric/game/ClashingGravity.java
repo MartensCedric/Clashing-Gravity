@@ -82,14 +82,12 @@ public class ClashingGravity extends ApplicationAdapter{
 				walls = new WallManager(this);
 				obstacleManager =  new ObstacleManager(this);
 			}
+
             batch.begin();
+
             walls.render();
 			batch.draw(player.getTexture(),(float)player.getX(), (float)player.getY());
-
-
-
-			for(Spike spike: this.obstacleManager.getSpikes())
-				batch.draw(spike.getTexture(), spike.getX(), spike.getY());
+			obstacleManager.render();
 
             batch.end();
 		}
@@ -118,13 +116,16 @@ public class ClashingGravity extends ApplicationAdapter{
 		walls.update();
 		obstacleManager.update();
 
-		playerSpeed += 0.0003;
+		playerSpeed += 0.0006;
 	}
 
 	private void loadAssets()
 	{
 		assetManager.load("data/Sprites/sqr_blue.png", Texture.class);
+
 		assetManager.load("data/Sprites/sqr_wall_red.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_green.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_yellow.png", Texture.class);
 
 		assetManager.load("data/Sprites/obs_spike.png", Texture.class);
 	}
