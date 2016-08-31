@@ -124,6 +124,10 @@ public class ClashingGravity extends ApplicationAdapter{
 		assetManager.load("data/Sprites/sqr_wall_red.png", Texture.class);
 		assetManager.load("data/Sprites/sqr_wall_green.png", Texture.class);
 		assetManager.load("data/Sprites/sqr_wall_yellow.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_lime.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_purple.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_orange.png", Texture.class);
+		assetManager.load("data/Sprites/sqr_wall_white.png", Texture.class);
 
 		assetManager.load("data/Sprites/obs_spike.png", Texture.class);
 	}

@@ -1,7 +1,6 @@
 package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.ClashingGravity;
 import com.cedric.game.interfaces.Renderable;
 
@@ -81,7 +80,6 @@ public class ObstacleManager implements Renderable{
      */
     private void createSpikedFloor(int amountOfSpikes)
     {
-        //The spike wall amount should be based on playerSpeed;
 
         for (int i = 0; i < amountOfSpikes; i++)
         {
@@ -98,6 +96,7 @@ public class ObstacleManager implements Renderable{
         {
             Spike spike = new Spike(Gdx.graphics.getWidth() + i * 16, Gdx.graphics.getHeight() - 32, game);
             spikesCeiling.add(spike);
+
         }
     }
 
@@ -120,13 +119,11 @@ public class ObstacleManager implements Renderable{
     @Override
     public void render() {
 
-        SpriteBatch batch = game.getBatch();
-
         for(Spike spike : spikesFloor)
-            batch.draw(spike.getTexture(), spike.getX(), spike.getY());
+            spike.render();
 
         for(Spike spike : spikesCeiling)
-            batch.draw(spike.getTexture(), spike.getX(), spike.getY(), 16, 16, 0 ,0 , 16, 16, false, true);
+            spike.render();
 
         walls.render();
     }

@@ -1,13 +1,15 @@
 package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.cedric.game.ClashingGravity;
 import com.cedric.game.interfaces.Movable;
+import com.cedric.game.interfaces.Renderable;
 
 /**
  * Created by Cedric on 2016-08-27.
  */
-public class Spike implements Movable {
+public class Spike implements Movable, Renderable {
 
     private Texture texture;
     private ClashingGravity game;
@@ -28,9 +30,6 @@ public class Spike implements Movable {
 
         this.x = x;
         this.y = y;
-
-        this.width = 16;
-        this.height = 16;
     }
 
     @Override
@@ -50,12 +49,12 @@ public class Spike implements Movable {
 
     @Override
     public void setX(int x) {
-
+        this.x = x;
     }
 
     @Override
     public void setY(int y) {
-
+        this.y = y;
     }
 
     @Override
@@ -74,5 +73,15 @@ public class Spike implements Movable {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+
+    @Override
+    public void render() {
+        SpriteBatch batch = game.getBatch();
+
+        if(this.y == 16)
+            batch.draw(texture, this.x, this.y);
+        else
+            batch.draw(texture, this.x, this.y, 16, 16, 0 ,0 , 16, 16, false, true);
     }
 }

@@ -19,7 +19,9 @@ public class Wall implements Renderable{
 
     private Texture texture;
 
-    public Wall(Texture texture, float x, float y, ClashingGravity game)
+    private Spike spike;
+
+    public Wall(Texture texture, float x, float y, Spike spike, ClashingGravity game)
     {
         width = 16;
         height = 16;
@@ -30,6 +32,12 @@ public class Wall implements Renderable{
         this.y = y;
 
         this.texture = texture;
+        this.spike = spike;
+    }
+
+    public Wall(Texture texture, float x, float y, ClashingGravity game)
+    {
+        this(texture, x, y, null, game);
     }
 
     public int getWidth() {
@@ -74,6 +82,6 @@ public class Wall implements Renderable{
 
     @Override
     public void render() {
-        game.getBatch().draw(texture, this.x, this.y);
+        this.game.getBatch().draw(texture, this.x, this.y);
     }
 }

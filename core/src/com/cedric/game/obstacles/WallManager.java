@@ -49,6 +49,10 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
         colors.put(Color.RED, "sqr_wall_red");
         colors.put(Color.GREEN, "sqr_wall_green");
         colors.put(Color.YELLOW, "sqr_wall_yellow");
+        colors.put(Color.WHITE, "sqr_wall_white");
+        colors.put(Color.ORANGE, "sqr_wall_orange");
+        colors.put(Color.LIME, "sqr_wall_lime");
+        colors.put(Color.PURPLE, "sqr_wall_purple");
 
         //FLOOR
         for(int i = 0; i < wallCountNeeded; i++)
@@ -106,7 +110,7 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             spawningColor = Color.YELLOW;
     }
 
-    private Texture getTextureFromColor(Color color)
+    public Texture getTextureFromColor(Color color)
     {
         return game.getAssetManager().get("data/Sprites/" + colors.get(color) + ".png", Texture.class);
     }
@@ -120,5 +124,29 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
         for(Wall wall : ceilingWalls)
             wall.render();
 
+    }
+
+    public List<Wall> getCeilingWalls() {
+        return ceilingWalls;
+    }
+
+    public void setCeilingWalls(List<Wall> ceilingWalls) {
+        this.ceilingWalls = ceilingWalls;
+    }
+
+    public List<Wall> getFloorWalls() {
+        return floorWalls;
+    }
+
+    public void setFloorWalls(List<Wall> floorWalls) {
+        this.floorWalls = floorWalls;
+    }
+
+    public Color getSpawningColor() {
+        return spawningColor;
+    }
+
+    public void setSpawningColor(Color spawningColor) {
+        this.spawningColor = spawningColor;
     }
 }
