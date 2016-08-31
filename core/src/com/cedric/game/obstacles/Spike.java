@@ -2,14 +2,16 @@ package com.cedric.game.obstacles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.cedric.game.ClashingGravity;
+import com.cedric.game.interfaces.KillsPlayerOnTouch;
 import com.cedric.game.interfaces.Movable;
 import com.cedric.game.interfaces.Renderable;
 
 /**
  * Created by Cedric on 2016-08-27.
  */
-public class Spike implements Movable, Renderable {
+public class Spike implements Movable, Renderable, KillsPlayerOnTouch {
 
     private Texture texture;
     private ClashingGravity game;
@@ -83,5 +85,15 @@ public class Spike implements Movable, Renderable {
             batch.draw(texture, this.x, this.y);
         else
             batch.draw(texture, this.x, this.y, 16, 16, 0 ,0 , 16, 16, false, true);
+    }
+
+    @Override
+    public void checkForCollisionWithPlayer() {
+        Rectangle spike = new Rectangle(this.x, this.y, width, height);
+
+        Rectangle player = new Rectangle((float)game.getPlayer().getX(), (float)game.getPlayer().getY(), 32, 32);
+
+        if(spike.overlaps(player))
+            game.restart();
     }
 }

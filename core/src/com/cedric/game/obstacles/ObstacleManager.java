@@ -42,6 +42,8 @@ public class ObstacleManager implements Renderable{
                 spikesFloor.remove(spike);
                 i--;
             }
+
+            spike.checkForCollisionWithPlayer();
         }
 
         for(int i = 0; i < spikesCeiling.size(); i++)
@@ -56,6 +58,7 @@ public class ObstacleManager implements Renderable{
                 spikesCeiling.remove(spike);
                 i--;
             }
+            spike.checkForCollisionWithPlayer();
         }
 
 
@@ -88,6 +91,10 @@ public class ObstacleManager implements Renderable{
         }
     }
 
+    /**
+     * Adds to the "spikesCeiling" list a line of Spike generated on the ceiling
+     * @param amountOfSpikes
+     */
     private void createSpikedCeiling(int amountOfSpikes)
     {
         //The spike wall amount should be based on playerSpeed;

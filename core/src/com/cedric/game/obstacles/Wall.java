@@ -84,4 +84,5 @@ public class Wall implements Renderable{
     public void render() {
         this.game.getBatch().draw(texture, this.x, this.y);
     }
+
 }
