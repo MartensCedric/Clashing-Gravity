@@ -25,7 +25,6 @@ public class ClashingGravity extends ApplicationAdapter{
 
 	private AssetManager assetManager;
 	private String playerTextureName;
-	private WallManager walls;
 
 	private boolean loaded = false;
 
@@ -76,18 +75,17 @@ public class ClashingGravity extends ApplicationAdapter{
 
 		if(loaded)
 		{
-			if(player == null && walls == null)
+			if(player == null)
 			{
 				player = new Player(this);
-				walls = new WallManager(this);
 				obstacleManager =  new ObstacleManager(this);
 			}
 
             batch.begin();
 
-            walls.render();
-			player.render();
 			obstacleManager.render();
+			player.render();
+
 
             batch.end();
 		}
@@ -107,15 +105,13 @@ public class ClashingGravity extends ApplicationAdapter{
 	public void restart()
 	{
 		playerSpeed = 2.0;
-		player = new Player(this);
-		walls = new WallManager(this);
+		player = new Player(this);;
 		obstacleManager = new ObstacleManager(this);
 	}
 
 	public void update()
 	{
 		player.update();
-		walls.update();
 		obstacleManager.update();
 
 		playerSpeed += 0.0006;
@@ -156,14 +152,6 @@ public class ClashingGravity extends ApplicationAdapter{
 
 	public void setPlayerSpeed(double playerSpeed) {
 		this.playerSpeed = playerSpeed;
-	}
-
-	public WallManager getWalls() {
-		return walls;
-	}
-
-	public void setWalls(WallManager walls) {
-		this.walls = walls;
 	}
 
     public SpriteBatch getBatch() {

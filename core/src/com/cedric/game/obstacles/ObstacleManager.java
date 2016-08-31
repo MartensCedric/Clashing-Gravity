@@ -14,16 +14,19 @@ import java.util.Random;
  */
 public class ObstacleManager implements Renderable{
 
-    ArrayList<Spike> spikesFloor;
-    ArrayList<Spike> spikesCeiling;
+    private ArrayList<Spike> spikesFloor;
+    private ArrayList<Spike> spikesCeiling;
 
-    ClashingGravity game;
+    private ClashingGravity game;
+
+    private WallManager walls;
 
     public ObstacleManager(ClashingGravity game)
     {
+        this.game = game;
         spikesFloor = new ArrayList<Spike>();
         spikesCeiling = new ArrayList<Spike>();
-        this.game = game;
+        walls = new WallManager(game);
     }
 
     public void update()
@@ -68,6 +71,8 @@ public class ObstacleManager implements Renderable{
         {
             createSpikedCeiling((int)game.getPlayerSpeed()*2);
         }
+
+        walls.update();
     }
 
     /**
@@ -123,6 +128,6 @@ public class ObstacleManager implements Renderable{
         for(Spike spike : spikesCeiling)
             batch.draw(spike.getTexture(), spike.getX(), spike.getY(), 16, 16, 0 ,0 , 16, 16, false, true);
 
-
+        walls.render();
     }
 }
