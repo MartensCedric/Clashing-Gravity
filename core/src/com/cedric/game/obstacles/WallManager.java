@@ -104,10 +104,18 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
                 ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), game));
         }
 
-        if(game.getPlayerSpeed() >= 3 && game.getPlayerSpeed() < 4)
+        if(game.getPlayerSpeed() >= 2.5 && game.getPlayerSpeed() < 3)
             spawningColor = Color.GREEN;
-        else if(game.getPlayerSpeed() >= 4)
+        else if(game.getPlayerSpeed() >= 3.5 && game.getPlayerSpeed() < 4)
             spawningColor = Color.YELLOW;
+        else if(game.getPlayerSpeed() >= 4 && game.getPlayerSpeed() < 4.5)
+            spawningColor = Color.WHITE;
+        else if(game.getPlayerSpeed() >= 4.5 && game.getPlayerSpeed() < 5)
+            spawningColor = Color.ORANGE;
+        else if(game.getPlayerSpeed() >= 5 && game.getPlayerSpeed() < 5.5)
+            spawningColor = Color.LIME;
+        else if(game.getPlayerSpeed() >= 5.5 && game.getPlayerSpeed() < 6)
+            spawningColor = Color.PURPLE;
     }
 
     public Texture getTextureFromColor(Color color)

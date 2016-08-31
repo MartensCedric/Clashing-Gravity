@@ -34,6 +34,7 @@ public class ClashingGravity extends ApplicationAdapter{
 	@Override
 	public void create () {
 
+		Gdx.graphics.setResizable(false);
 		batch = new SpriteBatch();
 		font = new BitmapFont(false);
 
