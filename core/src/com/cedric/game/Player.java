@@ -3,7 +3,6 @@ package com.cedric.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.cedric.game.geometry.BoxCoords;
 import com.cedric.game.interfaces.Renderable;
 
 /**
@@ -14,6 +13,8 @@ public class Player implements Renderable{
     private final double MIN_VELOCITY = 2.0;
     private final double MAX_VELOCITY = 3.0;
     private final double FORCE = 0.15;
+
+    private Sprite playerSprite;
 
     private final int WALL_HEIGHT = 16;
 
@@ -59,16 +60,18 @@ public class Player implements Renderable{
         this.appHeight = Gdx.app.getGraphics().getHeight();
 
         this.canSwitchGravity = true;
+
+        //this.playerSprite = new Sprite()
     }
 
     public void applyGravity()
     {
-        if(y - velocity < WALL_HEIGHT)
+        if(y - velocity < WALL_HEIGHT && game.getPlayerSpeed() > 0)
         {
             y = WALL_HEIGHT;
             velocity = 0;
         }
-        else if(y - velocity >  appHeight - WALL_HEIGHT - height)
+        else if(y - velocity >  appHeight - WALL_HEIGHT - height  && game.getPlayerSpeed() > 0)
         {
             y = appHeight - WALL_HEIGHT - height;
             velocity = 0;
@@ -133,23 +136,30 @@ public class Player implements Renderable{
 
     public void deathAnimation()
     {
-        canSwitchGravity = false;
-        this.force = FORCE;
+        if(canSwitchGravity)
+        {
+            canSwitchGravity = false;
 
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        force = -(FORCE*2);
+                        game.setPlayerSpeed(0);
+                        velocity = 0;
+                        Thread.sleep(200);
+                        force = FORCE*1.2;
+                        Thread.sleep(1500);
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                    game.restart();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        game.restart();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
 
-        thread.start();
+            thread.start();
+        }
     }
 
     @Override

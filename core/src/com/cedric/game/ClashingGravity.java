@@ -90,7 +90,6 @@ public class ClashingGravity extends ApplicationAdapter{
 			obstacleManager.render();
 			player.render();
 
-
             batch.end();
 		}
 
@@ -118,7 +117,8 @@ public class ClashingGravity extends ApplicationAdapter{
 		player.update();
 		obstacleManager.update();
 
-		playerSpeed += 0.0006;
+		if(playerSpeed != 0)
+			playerSpeed += 0.0006;
 	}
 
 	private void loadAssets()
