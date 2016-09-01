@@ -144,13 +144,24 @@ public class Player implements Renderable{
                 @Override
                 public void run() {
                     try {
+                        //This is a hardcoded animation
+                        boolean restartGame = false;
                         force = -(FORCE*2);
                         game.setPlayerSpeed(0);
                         velocity = 0;
                         Thread.sleep(200);
                         force = FORCE*1.2;
-                        Thread.sleep(1500);
 
+                        while(!restartGame)
+                        {
+                            Thread.sleep(50);
+
+                            if(y + height < 0)
+                            {
+                                Thread.sleep(250);
+                                restartGame = true;
+                            }
+                        }
                         game.restart();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
