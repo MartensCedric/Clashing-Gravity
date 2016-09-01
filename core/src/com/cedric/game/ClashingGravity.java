@@ -14,6 +14,9 @@ import com.cedric.game.obstacles.ObstacleManager;
 import com.cedric.game.obstacles.Spike;
 
 
+/**
+ * Once instantiated the game starts.
+ */
 public class ClashingGravity extends ApplicationAdapter{
 
 	private SpriteBatch batch;

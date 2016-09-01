@@ -5,6 +5,7 @@ import com.cedric.game.ClashingGravity;
 import com.cedric.game.interfaces.Renderable;
 
 /**
+ * Used to keep the player in the screen
  * Created by Cedric on 2016-08-27.
  */
 public class Wall implements Renderable{

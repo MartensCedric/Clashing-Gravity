@@ -13,6 +13,7 @@ public class Player implements Renderable{
 
     private final double MIN_VELOCITY = 2.0;
     private final double MAX_VELOCITY = 3.0;
+    private final double FORCE = 0.15;
 
     private final int WALL_HEIGHT = 16;
 
@@ -33,6 +34,8 @@ public class Player implements Renderable{
     private int appWidth;
     private int appHeight;
 
+    private boolean canSwitchGravity;
+
     public Player(ClashingGravity game)
     {
         this.game = game;
@@ -42,7 +45,7 @@ public class Player implements Renderable{
         this.texture = game.getSprite(textureName);
 
 
-        this.force = 0.15;
+        this.force = FORCE;
 
         this.velocity = MIN_VELOCITY;
 
@@ -54,6 +57,8 @@ public class Player implements Renderable{
 
         this.appWidth = Gdx.app.getGraphics().getWidth();
         this.appHeight = Gdx.app.getGraphics().getHeight();
+
+        this.canSwitchGravity = true;
     }
 
     public void applyGravity()
@@ -82,7 +87,8 @@ public class Player implements Renderable{
 
     public void gravitySwitch()
     {
-        force = -force;
+        if(canSwitchGravity)
+           force = -force;
     }
 
     public Texture getTexture() {
@@ -123,6 +129,27 @@ public class Player implements Renderable{
 
     public void setX(double x) {
         this.x = x;
+    }
+
+    public void deathAnimation()
+    {
+        canSwitchGravity = false;
+        this.force = FORCE;
+
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    game.restart();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
     }
 
     @Override

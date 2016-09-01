@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * Manages how the walls are drawn and spawned.
  * Created by Cedric on 2016-08-27.
  */
 public class WallManager extends ArrayList<Wall> implements Renderable{

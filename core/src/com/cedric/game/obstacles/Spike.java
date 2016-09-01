@@ -9,6 +9,7 @@ import com.cedric.game.interfaces.Movable;
 import com.cedric.game.interfaces.Renderable;
 
 /**
+ * S
  * Created by Cedric on 2016-08-27.
  */
 public class Spike implements Movable, Renderable, KillsPlayerOnTouch {
@@ -89,11 +90,14 @@ public class Spike implements Movable, Renderable, KillsPlayerOnTouch {
 
     @Override
     public void checkForCollisionWithPlayer() {
+
+        //TODO Only check collision when spikes are close to player
+
         Rectangle spike = new Rectangle(this.x, this.y, width, height);
 
         Rectangle player = new Rectangle((float)game.getPlayer().getX(), (float)game.getPlayer().getY(), 32, 32);
 
         if(spike.overlaps(player))
-            game.restart();
+            game.getPlayer().deathAnimation();
     }
 }
