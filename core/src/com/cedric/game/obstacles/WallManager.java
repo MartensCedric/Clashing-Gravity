@@ -9,6 +9,7 @@ import com.cedric.game.interfaces.Renderable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Manages how the walls are drawn and spawned.
@@ -73,10 +74,11 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
         for(int i = 0; i < floorWalls.size(); i++)
         {
             Wall wall = floorWalls.get(i);
-            wall.setX((float)(wall.getX() - game.getPlayerSpeed()));
+            wall.move();
 
             if(wall.getX() + wall.getWidth() < 0)
             {
+                //TODO Spawn spikes on walls, make it more likely to spawn if spike is on neighbor
                 floorWalls.remove(i);
                 i--;
             }
@@ -84,15 +86,26 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             Wall lastFloor = floorWalls.get(floorWalls.size() - 1);
             if(lastFloor.getX() < appWidth)
             {
-                floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), game));
+                Random randomizer = new Random();
+
+                //Checks if this wall will be spiked
+
+                if(randomizer.nextInt(100) + (game.getPlayerSpeed()-2.5)*5 > 15)
+                {
+                    Spike spike = new Spike(lastFloor.getX(), lastFloor.getY() + wallHeight, game);
+                    floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), spike, game));
+                }else{
+                    floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), game));
+                }
             }
+
         }
 
         //Ceiling
         for(int i = 0; i < ceilingWalls.size(); i++)
         {
             Wall wall = ceilingWalls.get(i);
-            wall.setX((float)(wall.getX() - game.getPlayerSpeed()));
+            wall.move();
 
             if(wall.getX() + wall.getWidth() < 0)
             {
@@ -101,8 +114,15 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             }
 
             Wall lastCeiling = ceilingWalls.get(ceilingWalls.size() - 1);
-            if(lastCeiling.getX() < appWidth)
-                ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), game));
+            if(lastCeiling.getX() < appWidth) {
+                Random randomizer = new Random();
+                if (randomizer.nextInt(100) + (game.getPlayerSpeed() - 2.5) * 5 > 15) {
+                    Spike spike = new Spike(lastCeiling.getX(), lastCeiling.getY() - wallHeight, game);
+                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), spike, game));
+                } else {
+                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), game));
+                }
+            }
         }
 
         if(game.getPlayerSpeed() >= 2.5 && game.getPlayerSpeed() < 3)
@@ -117,6 +137,7 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             spawningColor = Color.LIME;
         else if(game.getPlayerSpeed() >= 5.5 && game.getPlayerSpeed() < 6)
             spawningColor = Color.PURPLE;
+
     }
 
     public Texture getTextureFromColor(Color color)

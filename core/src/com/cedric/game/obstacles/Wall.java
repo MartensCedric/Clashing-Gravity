@@ -41,6 +41,14 @@ public class Wall implements Renderable{
         this(texture, x, y, null, game);
     }
 
+    public void move()
+    {
+        setX((float)(getX() - game.getPlayerSpeed()));
+
+        if(spike != null)
+            spike.move();
+    }
+
     public int getWidth() {
         return width;
     }
@@ -84,6 +92,16 @@ public class Wall implements Renderable{
     @Override
     public void render() {
         this.game.getBatch().draw(texture, this.x, this.y);
+
+        if(spike != null)
+            this.spike.render();
     }
 
+    public Spike getSpike() {
+        return spike;
+    }
+
+    public void setSpike(Spike spike) {
+        this.spike = spike;
+    }
 }

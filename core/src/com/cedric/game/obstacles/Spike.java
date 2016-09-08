@@ -38,6 +38,7 @@ public class Spike implements Movable, Renderable, KillsPlayerOnTouch {
     @Override
     public void move() {
         x -= game.getPlayerSpeed();
+        checkForCollisionWithPlayer();
     }
 
     @Override
