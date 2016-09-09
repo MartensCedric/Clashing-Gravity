@@ -62,9 +62,8 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             floorWalls.add(new Wall(getTextureFromColor(spawningColor), i*wallWidth, 0, this.game));
         }
 
-        for(int i = 0; i < wallCountNeeded; i++)
-        {
-            ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), i*wallWidth, appHeight - wallHeight, this.game));
+        for(int i = 0; i < wallCountNeeded; i++) {
+            ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), i * wallWidth, appHeight - wallHeight, this.game));
         }
     }
 
@@ -90,12 +89,12 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
 
                 //Checks if this wall will be spiked
 
-                if(randomizer.nextInt(100) + (game.getPlayerSpeed()-2.5)*5 > 15)
+                if(randomizer.nextInt(100) + (game.getPlayerSpeed()-4)*4 > 35)
                 {
                     Spike spike = new Spike(lastFloor.getX(), lastFloor.getY() + wallHeight, game);
-                    floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), spike, game));
+                    floorWalls.add(new Wall(getTextureFromColor(spawningColor),(int)(lastFloor.getX() + wallWidth + game.getPlayerSpeed()), lastFloor.getY(), spike, game));
                 }else{
-                    floorWalls.add(new Wall(getTextureFromColor(spawningColor), lastFloor.getX() + wallWidth, lastFloor.getY(), game));
+                    floorWalls.add(new Wall(getTextureFromColor(spawningColor),(int)(lastFloor.getX() + wallWidth + game.getPlayerSpeed()), lastFloor.getY(), game));
                 }
             }
 
@@ -116,11 +115,11 @@ public class WallManager extends ArrayList<Wall> implements Renderable{
             Wall lastCeiling = ceilingWalls.get(ceilingWalls.size() - 1);
             if(lastCeiling.getX() < appWidth) {
                 Random randomizer = new Random();
-                if (randomizer.nextInt(100) + (game.getPlayerSpeed() - 2.5) * 5 > 15) {
+                if (randomizer.nextInt(100) + (game.getPlayerSpeed() - 4) * 4 > 35) {
                     Spike spike = new Spike(lastCeiling.getX(), lastCeiling.getY() - wallHeight, game);
-                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), spike, game));
+                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), (int)(lastCeiling.getX() + wallWidth  + game.getPlayerSpeed()), lastCeiling.getY(), spike, game));
                 } else {
-                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), lastCeiling.getX() + wallWidth, lastCeiling.getY(), game));
+                    ceilingWalls.add(new Wall(getTextureFromColor(spawningColor), (int)(lastCeiling.getX() + wallWidth + game.getPlayerSpeed()), lastCeiling.getY(), game));
                 }
             }
         }
