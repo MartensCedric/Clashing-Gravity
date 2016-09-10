@@ -14,7 +14,6 @@ import java.util.Random;
 public class ObstacleManager implements Renderable{
 
     private ArrayList<Spike> spikesFloor;
-    private ArrayList<Spike> spikesCeiling;
 
     private ClashingGravity game;
 

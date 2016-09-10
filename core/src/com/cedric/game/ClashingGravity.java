@@ -134,6 +134,7 @@ public class ClashingGravity extends ApplicationAdapter{
 		assetManager.load("data/Sprites/sqr_wall_white.png", Texture.class);
 
 		assetManager.load("data/Sprites/obs_spike.png", Texture.class);
+		assetManager.load("data/Sprites/obs_rock.png", Texture.class);
 	}
 
 	public Texture getSprite(String textureName)
