@@ -55,8 +55,8 @@ public class ObstacleManager implements Renderable{
             }
         });
 
-        for(Rock rock : rocks)
-            rock.move();
+       // for(Rock rock : rocks)
+         //   rock.move();
     }
 
     @Override
@@ -64,10 +64,10 @@ public class ObstacleManager implements Renderable{
 
         walls.render();
 
-        for(Rock rock : rocks)
-        {
-            rock.render();
-        }
+        //for(Rock rock : rocks)
+        //{
+          //  rock.render();
+        //}
     }
 
     private void spawnRock()
