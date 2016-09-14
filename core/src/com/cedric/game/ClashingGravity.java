@@ -9,15 +9,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.cedric.game.obstacles.WallManager;
 import com.cedric.game.obstacles.ObstacleManager;
-import com.cedric.game.obstacles.Spike;
 
 
 /**
  * Once instantiated the game starts.
  */
 public class ClashingGravity extends ApplicationAdapter{
+
+	//TODO Fix bug that moves sprites at the right before disappearing
+	//TODO Spawn of rocks is sometimes on spikes or walls
 
 	private SpriteBatch batch;
 	private BitmapFont font;

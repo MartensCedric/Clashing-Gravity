@@ -1,11 +1,11 @@
 package com.cedric.game.obstacles;
 
-import com.badlogic.gdx.Gdx;
 import com.cedric.game.ClashingGravity;
 import com.cedric.game.interfaces.Renderable;
-
-import java.util.ArrayList;
-import java.util.Random;
+import com.cedric.game.obstacles.rocks.RockManager;
+import com.cedric.game.obstacles.rocks.Rock;
+import com.cedric.game.obstacles.walls.Wall;
+import com.cedric.game.obstacles.walls.WallManager;
 
 /**
  * Created by Cedric on 2016-08-27.
@@ -13,72 +13,37 @@ import java.util.Random;
  */
 public class ObstacleManager implements Renderable{
 
-    private ArrayList<Rock> rocks;
-    private int rockSpawningTempo;
-    private boolean rocksAreSpawning;
-
     private ClashingGravity game;
 
     private WallManager walls;
+    private RockManager rocks;
 
     public ObstacleManager(ClashingGravity game)
     {
         this.game = game;
-        rockSpawningTempo = 2000;
-        rocksAreSpawning = true;
+
 
         walls = new WallManager(game);
+        rocks = new RockManager(game);
+
+
     }
 
     public void update()
     {
         walls.update();
+        rocks.update();
 
-        //TODO FIX THIS SHIT, You made a  fucking while in update
-        //Put a bool (rocksarespawning) to keep it at 2s interval
-        Thread rockSpawningClock = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while(rocksAreSpawning)
-                    {
-                        Thread.sleep(rockSpawningTempo);
-
-                        if(rockSpawningTempo > 500)
-                            rockSpawningTempo -= 10;
-
-                        spawnRock();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-       // for(Rock rock : rocks)
-         //   rock.move();
     }
 
     @Override
     public void render() {
 
         walls.render();
-
-        //for(Rock rock : rocks)
-        //{
-          //  rock.render();
-        //}
+        rocks.render();
     }
 
-    private void spawnRock()
-    {
-        //We want to spawn walls that won't touch spikes
-        Random randomizer = new Random();
 
-        //Wall size is 16 and so is spike
-        //So we need to exclude 64 pixels
 
-        int rockY = randomizer.nextInt(Gdx.graphics.getHeight() - 32) + 32;
-        rocks.add(new Rock(Gdx.graphics.getWidth(), rockY, game));
-    }
+
 }

@@ -1,10 +1,12 @@
-package com.cedric.game.obstacles;
+package com.cedric.game.obstacles.walls;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.cedric.game.ClashingGravity;
 import com.cedric.game.interfaces.Renderable;
+import com.cedric.game.obstacles.Spike;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
